@@ -1,11 +1,10 @@
 package com.project.coches.project_coches.controller;
 
 
-import com.project.coches.project_coches.domain.pojos.BrandCarPojo;
+import com.project.coches.project_coches.domain.dto.BrandCarDto;
 import com.project.coches.project_coches.service.IBrandCarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,20 +19,20 @@ public class BrandCarController {
     private final IBrandCarService iBrandCarService;
 
     @GetMapping()
-    public ResponseEntity<List<BrandCarPojo>> getAll(){
+    public ResponseEntity<List<BrandCarDto>> getAll(){
         return ResponseEntity.ok(iBrandCarService.getAll());
     }
 
 
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<BrandCarPojo> getBrandCar(@PathVariable Integer id){
+    public ResponseEntity<BrandCarDto> getBrandCar(@PathVariable Integer id){
 
         return ResponseEntity.of(iBrandCarService.getBrandCar(id));
     }
 
     @PostMapping()
-    public ResponseEntity<BrandCarPojo>save(@RequestBody BrandCarPojo brandCarPojonew  ){
+    public ResponseEntity<BrandCarDto>save(@RequestBody BrandCarDto brandCarPojonew  ){
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(iBrandCarService.save(brandCarPojonew));
@@ -42,12 +41,18 @@ public class BrandCarController {
         }
 }
 
-@PutMapping()
-public  ResponseEntity<BrandCarPojo> update(@RequestBody BrandCarPojo brandCarPojoUpdate){
+@PatchMapping()
+public  ResponseEntity<BrandCarDto> update(@RequestBody BrandCarDto brandCarDtoUpdate){
 
-    return ResponseEntity.status(HttpStatus.OK)
-            .body(iBrandCarService.save(brandCarPojoUpdate));
-}
+    BrandCarDto brandCarDto = iBrandCarService.update(brandCarDtoUpdate);
+    if(brandCarDto == null){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+    }else {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(brandCarDto);
+        }
+    }
 
     @DeleteMapping(path = "/{id}")
     public  ResponseEntity<Boolean> delete (@PathVariable Integer id){

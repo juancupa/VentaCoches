@@ -1,23 +1,26 @@
 package com.project.coches.project_coches.service;
 
-import com.project.coches.project_coches.domain.pojos.BrandCarPojo;
+import com.project.coches.project_coches.domain.dto.BrandCarDto;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IBrandCarService {
 
-    List<BrandCarPojo> getAll();
+    List<BrandCarDto> getAll();
 
-    Optional<BrandCarPojo> getBrandCar(Integer id);
+    Optional<BrandCarDto> getBrandCar(Integer id);
 
-    BrandCarPojo save(BrandCarPojo newBrandCar);
+    BrandCarDto save(BrandCarDto newBrandCar);
 
-    BrandCarPojo update (BrandCarPojo newBrandCar);
+    BrandCarDto update (BrandCarDto newBrandCar);
 
-   // Optional<BrandCarPojo> update(BrandCarPojo newBrandCar);
+   // Optional<BrandCarDto> update(BrandCarDto newBrandCar);
 
     boolean delete(Integer idBrandCar);
+
+
+    Optional<BrandCarDto> update01(BrandCarDto newBrandCar);
 
 
 

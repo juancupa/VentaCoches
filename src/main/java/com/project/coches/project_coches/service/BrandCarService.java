@@ -1,6 +1,6 @@
 package com.project.coches.project_coches.service;
 
-import com.project.coches.project_coches.domain.pojos.BrandCarPojo;
+import com.project.coches.project_coches.domain.dto.BrandCarDto;
 import com.project.coches.project_coches.domain.repository.IBrandCarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,27 +16,32 @@ public class BrandCarService implements IBrandCarService {
 
 
     @Override
-    public List<BrandCarPojo> getAll() {
+    public List<BrandCarDto> getAll() {
         return iBrandCarRepository.getAll();
     }
 
     @Override
-    public Optional<BrandCarPojo> getBrandCar(Integer id) {
+    public Optional<BrandCarDto> getBrandCar(Integer id) {
         return iBrandCarRepository.getBrandCar(id);
     }
 
     @Override
-    public BrandCarPojo save(BrandCarPojo newBrandCar) {
+    public BrandCarDto save(BrandCarDto newBrandCar) {
         return iBrandCarRepository.save(newBrandCar);
     }
 
+
+
     @Override
-    public BrandCarPojo update(BrandCarPojo newBrandCar) {
-        return null;
+    public BrandCarDto update(BrandCarDto newBrandCar) {
+      if (iBrandCarRepository.getBrandCar(newBrandCar.getId()).isEmpty()){
+          return null;
+      }
+      return iBrandCarRepository.save(newBrandCar);
     }
 
   /*  @Override
-    public Optional<BrandCarPojo> update(BrandCarPojo newBrandCar) {
+    public Optional<BrandCarDto> update(BrandCarDto newBrandCar) {
         if(iBrandCarRepository.getBrandCar(newBrandCar.getId()).isEmpty()){
             return Optional.empty();
         }
@@ -51,5 +56,13 @@ public class BrandCarService implements IBrandCarService {
         }
         iBrandCarRepository.delete(idBrandCar);
         return true;
+    }
+
+    @Override
+    public Optional<BrandCarDto> update01(BrandCarDto newBrandCar) {
+        if (iBrandCarRepository.getBrandCar(newBrandCar.getId()).isEmpty()){
+            return Optional.empty();
+        }
+        return Optional.of(iBrandCarRepository.save(newBrandCar));
     }
 }

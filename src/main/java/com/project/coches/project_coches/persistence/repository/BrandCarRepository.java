@@ -1,6 +1,6 @@
 package com.project.coches.project_coches.persistence.repository;
 
-import com.project.coches.project_coches.domain.pojos.BrandCarPojo;
+import com.project.coches.project_coches.domain.dto.BrandCarDto;
 import com.project.coches.project_coches.domain.repository.IBrandCarRepository;
 import com.project.coches.project_coches.persistence.entity.BrandCarEntity;
 import com.project.coches.project_coches.persistence.maperr.IBrandCarMapper;
@@ -34,20 +34,20 @@ public class BrandCarRepository  implements IBrandCarRepository {
     }*/
 
     @Override
-    public List<BrandCarPojo> getAll() {
+    public List<BrandCarDto> getAll() {
         return iBrandCarMapper.toMarcaCochePojo(iBrandCarCrudRepository.findAll());
 
     }
 
     @Override
-    public Optional<BrandCarPojo> getBrandCar(Integer id) {
+    public Optional<BrandCarDto> getBrandCar(Integer id) {
 
         return iBrandCarCrudRepository.findById(id)
                 .map(iBrandCarMapper :: toMarcaCochePojo);
     }
 
     @Override
-    public BrandCarPojo save(BrandCarPojo newBrandCar) {
+    public BrandCarDto save(BrandCarDto newBrandCar) {
 
         BrandCarEntity brandCarEntity = iBrandCarMapper.toMarcaCocheEntity(newBrandCar);
         return  iBrandCarMapper.toMarcaCochePojo(iBrandCarCrudRepository.save(brandCarEntity));
