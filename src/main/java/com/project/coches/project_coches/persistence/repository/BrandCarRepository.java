@@ -2,8 +2,9 @@ package com.project.coches.project_coches.persistence.repository;
 
 import com.project.coches.project_coches.domain.dto.BrandCarDto;
 import com.project.coches.project_coches.domain.repository.IBrandCarRepository;
+import com.project.coches.project_coches.persistence.crud.IBrandCarCrudRepository;
 import com.project.coches.project_coches.persistence.entity.BrandCarEntity;
-import com.project.coches.project_coches.persistence.maperr.IBrandCarMapper;
+import com.project.coches.project_coches.persistence.mapper.IBrandCarMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

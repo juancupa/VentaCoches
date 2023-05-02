@@ -1,9 +1,11 @@
-package com.project.coches.project_coches.persistence.maperr;
+package com.project.coches.project_coches.persistence.mapper;
+
 
 
 import com.project.coches.project_coches.domain.dto.BrandCarDto;
 import com.project.coches.project_coches.persistence.entity.BrandCarEntity;
 import org.mapstruct.InheritConfiguration;
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -27,7 +29,8 @@ public interface IBrandCarMapper {
      * @param marcaCochePojo Entidad a convertir
      * @return Pojo a convertir
      */
-    @InheritConfiguration
+    @InheritInverseConfiguration
+    @Mapping(target = "carEntities", ignore = true)
     BrandCarEntity toMarcaCocheEntity(BrandCarDto marcaCochePojo);
 
     /**

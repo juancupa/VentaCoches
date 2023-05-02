@@ -2,7 +2,8 @@ package com.project.coches.project_coches.controller;
 
 
 import com.project.coches.project_coches.domain.dto.BrandCarDto;
-import com.project.coches.project_coches.service.IBrandCarService;
+
+import com.project.coches.project_coches.domain.useCase.IBrandCarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
